@@ -108,7 +108,7 @@ def main_chat(chat_room):
 def on_chat(*args):
     if (args[0]["name"] == "IRCBot"):
         return
-    livechanBot.sendMsg('#livechan', args[0]["name"]+"~ "+args[0]["body"])
+    livechanBot.sendMsg('#livechan', args[0]["name"]+"~ "+(" ".join(args[0]["body"].splitlines())))
 
 def on_user_count(*args):
     print args[0], "users online"
