@@ -108,7 +108,12 @@ def main_chat(chat_room):
 def on_chat(*args):
     if (args[0]["name"] == "IRCBot"):
         return
-    livechanBot.sendMsg('#livechan', args[0]["name"]+"~ "+(" ".join(args[0]["body"].splitlines())))
+    msg = args[0]["name"]+"~ "
+    if ("image" in args[0]):
+        filename = "https://livechan.net/tmp/uploads/"+re.compile('[\w\-\.]*$').search(args[0]["image"]).group(0)
+        msg += "file: "+filename+" "
+    msg += (" ".join(args[0]["body"].splitlines()))
+    livechanBot.sendMsg('#livechan', msg)
 
 def on_user_count(*args):
     print args[0], "users online"
